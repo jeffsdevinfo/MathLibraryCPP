@@ -3,14 +3,47 @@
 
 #include <iostream>
 #include "Vector3.h"
+#include "Matrix4.h"
 using namespace MathLibraryJSS;
+
+void PrintVec4(const Vector4& refVec4)
+{
+    std::cout << "\n\n PrintVec4";
+    std::cout << "\n" << refVec4.X() << "\t" << refVec4.Y() << "\t" << refVec4.Z() << "\t" << refVec4.Z();
+}
+
+void PrintMat4(MathLibraryJSS::Matrix4& refMat4)
+{    
+    std::cout << "\n\n PrintMat4";
+    std::cout << "\n" << refMat4.Xx() << "\t\t" << refMat4.Xy() << "\t\t" << refMat4.Xz() << "\t\t" << refMat4.Xw();
+    std::cout << "\n" << refMat4.Yx() << "\t\t" << refMat4.Yy() << "\t\t" << refMat4.Yz() << "\t\t" << refMat4.Yw();
+    std::cout << "\n" << refMat4.Zx() << "\t\t" << refMat4.Zy() << "\t\t" << refMat4.Zz() << "\t\t" << refMat4.Zw();
+    std::cout << "\n" << refMat4.Tx() << "\t\t" << refMat4.Ty() << "\t\t" << refMat4.Tz() << "\t\t" << refMat4.Tw();
+    
+}
 
 int main()
 {
-    Vector3 vec1 = { 1,2,3 };
+    Vector4 vec1 = { 0,0,1,0 };
+    
+    Matrix4 testMat;
+    testMat.SetRotateY(90);
+    
+    Vector4 rotatedVec = testMat * vec1;
+    PrintVec4(rotatedVec);
 
-    std::cout << vec1.X() << " " << vec1.Y() << " " << vec1.Z();
+    Matrix4 testMat2;
+    testMat2.SetRotateZ(90);        
+
+    Vector4 rotatedVec1 = testMat2 * rotatedVec;
+    PrintVec4(rotatedVec1);
+
+    
+    int i = 0;
+
 }
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
